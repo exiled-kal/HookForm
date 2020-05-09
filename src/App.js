@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+import UserForm from "./components/UserForm";
+import Results from "./components/Results";
+
 function App() {
+  // create state here by destructure and pass 
+  // in the info so we make hook n initialise
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* form will change data we need to pass in setState method */}
+      {/* it will change into Results */}
+      <UserForm inputs={state} setInputs={setState} />
+      {/* result wont change any of the data */}
+      <Results result={state} />
     </div>
   );
 }
